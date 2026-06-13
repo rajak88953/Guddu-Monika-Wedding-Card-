@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> गुड्डू संग मोनिका | शुभ विवाह</title>
+    <link rel="icon" type="image/x-icon" href="C:\Desktop\Wedding Card\logo.png">
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Tiro+Devanagari+Hindi:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library for Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        :root {
+            --maroon: #2d0b0b;
+            --gold: #d4af37;
+            --light-gold: #fcf6ba;
+            --white: #ffffff;
+            --border-speed: 3s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--maroon);
+            color: var(--light-gold);
+            font-family: 'Tiro Devanagari Hindi', serif;
+            overflow-x: hidden;
+            text-align: center;
+            position: relative;
+        }
+
+        /* --- 1. DYNAMIC BACKGROUND (Particles & Om) --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at center, #4a0e0e 0%, #1a0505 100%);
+        }
+
+        .big-om-bg {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60vw;
+            color: rgba(212, 175, 55, 0.03);
+            z-index: -1;
+            pointer-events: none;
+            animation: rotateOm 120s linear infinite;
+        }
+
+        @keyframes rotateOm {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- 2. FRONT SHINE SWEEP ANIMATION --- */
+        .front-shine {
+            position: fixed;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.07), transparent);
+            transform: skewX(-25deg);
+            z-index: 10;
+            pointer-events: none;
+            animation: shineSweep 7s infinite;
+        }
+
+        @keyframes shineSweep {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        /* --- 3. BOLD HINDI LOOK (Kruti Dev Style) --- */
+        .hindi-bold { font-family: 'Tiro Devanagari Hindi', serif; font-weight: 700; line-height: 1.5; }
+
+        /* --- 4. ANIMATED GLOW BORDERS --- */
+        .animated-border-box {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 3px;
+            margin: 30px auto;
+            max-width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.4s ease;
+        }
+
+        .animated-border-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--gold));
+            animation: rotateBorder var(--border-speed) linear infinite;
+        }
+
+        .animated-border-box::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: var(--maroon);
+            border-radius: 12px;
+            z-index: 0;
+        }
+
+        .inner-content { position: relative; z-index: 1; padding: 25px; }
+
+        @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
+
+        .animated-border-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- 5. ENTRANCE SCREEN --- */
+        #splash {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #4a0e0e, #1a0505);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1), opacity 1s ease;
+        }
+
+        .open-btn {
+            background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728);
+            color: var(--maroon);
+            border: none; padding: 18px 45px;
+            font-size: 1.6rem; font-weight: bold;
+            border-radius: 50px; cursor: pointer;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            margin-top: 30px;
+        }
+
+        /* Icons & Images */
+        .ganesha { width: 110px; filter: drop-shadow(0 0 15px var(--gold)); animation: float 3s infinite; }
+        @keyframes float { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
+
+        .main-title { font-family: 'Cinzel Decorative', cursive; font-size: clamp(2.5rem, 10vw, 4.5rem); color: var(--gold); margin: 15px 0; }
+
+        .couple-frame {
+            width: 85%; max-width: 380px; margin: 30px auto;
+            border: 8px double var(--gold); padding: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.5s ease;
+            border-radius: 15px;
+        }
+        .couple-frame img { width: 100%; border-radius: 5px; }
+
+        .map-link {
+            display: inline-block; background: linear-gradient(45deg, #bf953f, #fcf6ba);
+            color: var(--maroon); padding: 15px 35px; border-radius: 50px;
+            text-decoration: none; font-weight: bold; margin-top: 30px;
+        }
+
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+
+    <!-- Animations Layers -->
+    <div class="front-shine"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="big-om-bg">ॐ</div>
+
+    <!-- Opening Screen -->
+
+  
+    <div id="splash">
+       <div data-aos="zoom-in" data-aos-duration="1500">
+            <img src="ganeshji.png" class="ganesha">
+            <p class="hindi-bold" style="color: var(--gold); letter-spacing: 2px;">|| श्री गणेशाय नम: ||</p>
+            <h1 class="main-title">Guddu & Monika</h1>
+            <button class="open-btn hindi-bold" onclick="startInvite()">💫 | शुभ विवाह | 💫 </button>
+
+            <br> </br>
+        
+            <button class="open-btn hindi-bold" style="font-size: 1.5rem;">01 जुलाई 2026</button>
+
+            <br> </br>
+            
+            <button class="open-btn hindi-bold" onclick="startInvite()">💫 निमंत्रण खोलें💫</button>
+        </div>
+    </div>
+
+    <!-- Music -->
+    <audio id="bgMusic" loop>
+        <source src="C:\Desktop\Wedding Card\audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <a href="https://wa.me/919525746308" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="38">
+    </a>
+
+    <!-- Header -->
+    <header style="padding: 60px 20px; border-bottom: 5px solid var(--gold);">
+        <div data-aos="fade-down">
+            <img src="ganeshji.png" class="ganesha">
+            <p class="hindi-bold">|| श्री गणेशाय नम: ||</p>
+            <h1 class="main-title">Guddu & Monika</h1>
+            <button class="open-btn hindi-bold" style="font-size: 1.5rem; background: var(--gold); color: var(--maroon); display: inline-block; padding: 5px 25px; border-radius: 5px;">💫 | शुभ विवाह | 💫</button>
+            <br></br>
+            <button class="open-btn hindi-bold" style="font-size: 1.5rem; background: var(--gold); color: var(--maroon); display: inline-block; padding: 5px 25px; border-radius: 5px;"> 01 जुलाई 2026</button>
+        </div>
+    </header>
+
+    <!-- Couple Photo -->
+    <section>
+        <div class="couple-frame" data-aos="zoom-in">
+            <img src="couple.jpg" alt="वर-वधू">
+        </div>
+    </section>
+
+    <!-- Shayari Section -->
+    <section class="animated-border-box" data-aos="fade-up">
+        <div class="inner-content hindi-bold" style="font-size: 1.4rem; color: #fff;">
+            ✨ विवाह एक अनोखा बंधन है ✨<br>
+            इस बंधन के होंगे साक्ष्य आप,<br>
+            💖 आशीर्वाद और प्यार से भर देंगे 💖<br>
+            खुशियां, प्यार, और साथ।✨🕊️✨<br>
+            🌸 आपलोगों के आशीर्वाद से 🌸<br>
+            बँध जाएं दोनों पवित्र एक साथ। <br><br>
+            <span style="color: var(--gold); font-size: 1.8rem;">~~~ राजा👉❤️</span>
+        </div>
+    </section>
+
+    <!-- Manglik Karyakram Section -->
+    <section class="animated-border-box" data-aos="fade-up">
+        <div class="inner-content hindi-bold">
+            <h2 style="color: var(--gold); text-decoration: underline; font-size: 2.2rem; margin-bottom: 20px;">।। मांगलिक कार्यक्रम ।।</h2>
+            <div style="margin-top: 30px;">
+                <p style="font-size: 1.8rem; color: var(--gold);">वर: आयुष्मान् गुड्डू कुमार</p>
+                <p>(सुपुत्र : माता श्रीमती सविता देवी एवं पिता श्री अशोक शर्मा)<br>
+ग्राम - डेढ़ुआ पोस्ट - सुक्की थाना - पातेपुर जिला - वैशाली बिहार (843114))</p>
+                <p style="font-size: 2.5rem; margin: 20px 0; font-family: 'Cinzel Decorative', cursive;">संग</p>
+                <p style="font-size: 1.8rem; color: var(--gold);">वधू: आयुष्मती मोनिका कुमारी</p>
+                <p>(सुपुत्री: श्रीमती ममता देवी एवं पिता:  स्व० रामपुकार शर्मा)<br>ग्राम - चकहैदर पोस्ट - मोतीपुर थाना - ताजपुर जिला - समस्तीपुर बिहार</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section style="padding: 10px;">
+
+        <div class="animated-border-box" data-aos="fade-left">
+            <div class="inner-content hindi-bold">
+                <h3 style="color: var(--gold); font-size: 1.8rem;">घीढारी & मटकोर</h3>
+                <p>30 जून 2026 (मंगलवार) | सायं 06:00 बजे से</p>
+            </div>
+        </div>
+        <div class="animated-border-box" data-aos="fade-right">
+            <div class="inner-content hindi-bold">
+                <h3 style="color: var(--gold); font-size: 1.8rem;">हल्दी & मेहंदी</h3>
+                <p>30 जून 2026 (मंगलवार) | सायं 09:00 बजे से</p>
+            </div>
+        </div>
+
+        
+
+        <div class="animated-border-box" data-aos="fade-up">
+            <div class="inner-content hindi-bold">
+                <h3 style="color: var(--gold); font-size: 2rem;">शुभ विवाह</h3>
+                <p>01 जुलाई 2026 (बुधवार) | रात्रि में</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue -->
+    <section style="padding: 50px 20px;" class="hindi-bold" data-aos="zoom-in">
+        <h2 style="color: var(--gold); font-size: 2rem;">विवाह स्थल</h2>
+        <p style="font-size: 1.5rem; margin-top: 15px;">ग्राम - चकहैदर पोस्ट - मोतीपुर थाना - ताजपुर जिला - समस्तीपुर बिहार</p>
+        <a href="https://maps.app.goo.gl/TcRNNU5nc5yoGA1U8" class="map-link" target="_blank">📍 गूगल मैप पर रास्ता देखें</a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer style="margin-top: 50px;">
+        <div class="animated-border-box" data-aos="fade-up">
+            <div class="inner-content hindi-bold">
+                <h2 style="font-size: 2.2rem; color: var(--gold);">।। आप सपरिवार सादर आमंत्रित हैं ।।</h2>
+                
+               
+
+                <div style="margin-top: 30px; border-top: 1px solid rgba(212,175,55,0.3); padding-top: 20px;">
+                   <p style="color: var(--white); font-size: 1.3rem; margin-bottom: 10px;">दर्शनाभिलाषी:</p>
+                    <p style="font-size: 1.6rem; color: var(--gold);">प्रेषक: श्री अशोक शर्मा एवं <br> समस्त शर्मा परिवार </p>
+                    <p style="color: var(--gold); margin-top: 5px;">संपर्क: 9525746308</p>
+                </div>
+                
+            </div>
+        </div>
+        <p style="padding-bottom: 30px; opacity: 0.5;">© 2026 Guddu & Monika Wedding Ceremony</p>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 1200, once: true });
+
+        // --- Background Particles Logic ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedY = Math.random() * -0.5 - 0.2;
+                this.isOm = Math.random() > 0.85;
+            }
+            update() {
+                this.y += this.speedY;
+                if (this.y < -20) { this.y = canvas.height + 20; this.x = Math.random() * canvas.width; }
+            }
+            draw() {
+                ctx.fillStyle = "rgba(212, 175, 55, 0.25)";
+                if (this.isOm) { ctx.font = "16px serif"; ctx.fillText("ॐ", this.x, this.y); }
+                else { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+            }
+        }
+
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- Invitation Opening Function ---
+        function startInvite() {
+            const music = document.getElementById('bgMusic');
+            music.play().catch(e => console.log("Music play blocked by browser"));
+            
+            const splash = document.getElementById('splash');
+            splash.style.transform = "translateY(-100%)";
+            splash.style.opacity = "0";
+            setTimeout(() => { splash.style.display = "none"; }, 1200);
+        }
+    </script>
+</body>
+</html>
